@@ -1,0 +1,11 @@
+TP FINAL PYTHON - PASOS PARA ENTREGAR
+
+1) Descargar y DESCOMPRIMIR el ZIP.
+2) Comprobar que existan las carpetas Ejercicio_1, Ejercicio_2 y Ejercicio_3.
+3) Ver README.md para ejecutar y comprobar el programa.
+4) Crear repositorio PÚBLICO en GitHub.
+5) Subir LAS CARPETAS DESCOMPRIMIDAS, no solamente el ZIP.
+6) Comprobar en GitHub que Ejercicio_3 contenga manage.py y requirements.txt.
+7) En TP FINAL OBLIGATORIO > AGREGAR ENTREGA: pegar la URL del repositorio.
+
+El README.md incluye comandos para ejecutar cada ejercicio y el proyecto Django.

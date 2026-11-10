@@ -1,0 +1,10 @@
+# Archivos generados localmente: no se suben al repositorio.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Ejercicio_3/db.sqlite3
+Ejercicio_3/staticfiles/

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Sustentabilidad | EcoTech Solutions</title>
+    <style>
+        :root { --verde: #146c5b; --oscuro: #14312d; --claro: #f1f8f4; --borde: #d5e6df; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--claro); color: var(--oscuro); font: 16px/1.5 Arial, sans-serif; }
+        header { background: linear-gradient(110deg, #104d43, #248775); color: white; padding: 36px 20px; }
+        .contenedor { max-width: 980px; margin: 0 auto; }
+        .marca { font-size: .85rem; letter-spacing: .12em; font-weight: 800; }
+        h1 { margin: 10px 0 6px; font-size: clamp(1.5rem, 4vw, 2.25rem); }
+        header p { color: #e4f5ef; margin: 0; }
+        main { padding: 28px 18px 42px; }
+        .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .tarjeta, .panel { background: white; border: 1px solid var(--borde); border-radius: 15px; padding: 22px; box-shadow: 0 4px 18px #14463a0a; }
+        .etiqueta { font-size: .86rem; color: #4a6860; font-weight: bold; text-transform: uppercase; letter-spacing: .04em; }
+        .valor { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; color: var(--verde); margin-top: 9px; overflow-wrap: anywhere; }
+        .unidad { font-size: .9rem; color: #45665d; }
+        .panel { margin-top: 22px; overflow-x: auto; }
+        h2 { margin: 0 0 14px; font-size: 1.2rem; }
+        table { width: 100%; border-collapse: collapse; min-width: 470px; }
+        th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #e2ede8; }
+        th { background: #e8f5ef; font-size: .87rem; }
+        tr:last-child td { border-bottom: none; }
+        .nota { margin: 18px 2px 0; color: #45665d; font-size: .85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <div class="marca">ECOTECH SOLUTIONS</div>
+            <h1>Panel de sustentabilidad</h1>
+            <p>Monitoreo de consumo eléctrico y emisiones estimadas de carbono.</p>
+        </div>
+    </header>
+    <main class="contenedor">
+        <section class="tarjetas" aria-label="Indicadores principales">
+            <article class="tarjeta">
+                <div class="etiqueta">Emisiones globales</div>
+                <div class="valor">{{ total_emisiones|floatformat:2 }}</div>
+                <div class="unidad">kg de CO₂</div>
+            </article>
+            <article class="tarjeta">
+                <div class="etiqueta">Consumo total</div>
+                <div class="valor">{{ total_consumo_kwh|floatformat:2 }}</div>
+                <div class="unidad">kWh</div>
+            </article>
+            <article class="tarjeta">
+                <div class="etiqueta">Planta de mayor consumo</div>
+                <div class="valor">{{ planta_top }}</div>
+                <div class="unidad">Se considera el consumo acumulado.</div>
+            </article>
+        </section>
+        <section class="panel">
+            <h2>Resumen por planta</h2>
+            <table>
+                <thead>
+                    <tr><th>Planta</th><th>Consumo acumulado (kWh)</th><th>Emisiones (kg CO₂)</th></tr>
+                </thead>
+                <tbody>
+                {% for item in desglose_plantas %}
+                    <tr>
+                        <td>{{ item.planta }}</td>
+                        <td>{{ item.consumo_kwh|floatformat:2 }}</td>
+                        <td>{{ item.emisiones_kg|floatformat:2 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="3">No hay registros de consumo disponibles.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        <p class="nota">Datos de demostración · Factor de emisión: 0,4 kg de CO₂ por kWh.</p>
+    </main>
+</body>
+</html>
