@@ -1,0 +1,30 @@
+name: Organizar TP Final Python
+on:
+  push:
+    paths:
+      - ".github/workflows/organizar-tp.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  organizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extraer las carpetas
+        run: |
+          set -e
+          unzip -q TP_Final_Obligatorio_Python_EcoTech.zip
+          mv TP_Final_EcoTech_Solutions/Ejercicio_1 .
+          mv TP_Final_EcoTech_Solutions/Ejercicio_2 .
+          mv TP_Final_EcoTech_Solutions/Ejercicio_3 .
+          mv TP_Final_EcoTech_Solutions/README.md .
+          mv TP_Final_EcoTech_Solutions/INSTRUCCIONES_RAPIDAS.txt .
+          mv TP_Final_EcoTech_Solutions/.gitignore .
+          rmdir TP_Final_EcoTech_Solutions
+          rm TP_Final_Obligatorio_Python_EcoTech.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Organizar los tres ejercicios del TP"
+          git push
